@@ -4,6 +4,15 @@ from math import log
 from itertools import permutations
 permute = permutations
 
+
+def my_input(in_string):
+	stuffdict = {"A": "1", "K": "13", "Q": "12", "J": "11", "c": "Check", "h": "Hard", "g" : "Game", "C": "Check", "H": "Hard", "G" : "Game"}
+	retval = input(in_string)
+	if retval in stuffdict:
+		return stuffdict[retval]
+	else:
+		return retval
+
 def root(a, b):
 	#prevents complex numbers or raising to negative powers
 	if b % 2 and a < 0:
@@ -154,7 +163,7 @@ def check(cards, total):
 
 
 
-function_mode = input('Type "Game" for game or "Check" for only the checker function\n')
+function_mode = my_input('Type "Game" for game or "Check" for only the checker function\n')
 
 if function_mode == "Game":
 	deck = list(range(1,14)) * 4
@@ -186,23 +195,23 @@ if function_mode == "Game":
 			continue
 		else:
 			print("Cards:", cards, "Dice:", dice, "Sum:", sum(dice))
-			inp = input('Type "show" for solution or "next" to play again!\n')
+			inp = my_input('Type "show" for solution or "next" to play again!\n')
 			if inp == "show":
 				print("Number of Solutions: ", len(solutions_list))
 				for solution in solutions_list:
 					print(solution)
-				inp = input('Type "next" to play again!\n')
+				inp = my_input('Type "next" to play again!\n')
 elif function_mode == "Check":
 	while True:
-		cards = [int(i) for i in input("Please input the card values separated by spaces\n").split(" ")]
-		total = int(input("Please input the sum of the dice values\n"))
+		cards = [int(i) for i in my_input("Please my_input the card values separated by spaces\n").split(" ")]
+		total = int(my_input("Please my_input the sum of the dice values\n"))
 		permutations_of_cards = list(permute(cards))
 		found_solution = False
 		for card_instance in permutations_of_cards:
 			found_solution, solutions_list = check(card_instance, total)
 			if found_solution:
 				print("IT IS POSSIBLE, SCRUB")
-				if input("If you would like to see the solution, type \"show\"\n") == "show":
+				if my_input("If you would like to see the solution, type \"show\"\n") == "show":
 					print("Number of Solutions: ", len(solutions_list))
 					for solution in solutions_list:
 						print(solution)
@@ -214,7 +223,7 @@ elif function_mode == "Alan":
 	hardmode = []
 	k = 0
 	solvable = 0
-	numtrials = int(input("number of trials?\n"))
+	numtrials = int(my_input("number of trials?\n"))
 	deck = list(range(1,14)) * 4
 	random.shuffle(deck)
 	discard = []
@@ -256,12 +265,12 @@ elif function_mode == "Alan":
 	# 	print("NEW NEW NEW")
 	# 	print(lots)
 elif function_mode == "Hard":
-	k = int(input("Max number of solutions?\n"))
+	k = int(my_input("Max number of solutions?\n"))
 	stored_sol = None
 	while k > 5:
 		print("Too many solutions for hard mode, we'll go with 2")
 		k = 2
-	forestcanthandle = int(input("Range? If 0, uses standard 3 dice\n"))
+	forestcanthandle = int(my_input("Range? If 0, uses standard 3 dice\n"))
 	deck = list(range(1,14)) * 4
 	random.shuffle(deck)
 	discard = []
@@ -299,7 +308,7 @@ elif function_mode == "Hard":
 			continue
 		else:
 			if stored_sol != None:
-				inp = input()
+				inp = my_input()
 				if inp == "show":
 					for solution in stored_sol:
 						print(solution)
