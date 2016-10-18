@@ -5,7 +5,7 @@ from itertools import permutations
 permute = permutations
 
 
-def my_input(in_string):
+def my_input(in_string = ""):
 	stuffdict = {"A": "1", "K": "13", "Q": "12", "J": "11", "c": "Check", "h": "Hard", "g" : "Game", "C": "Check", "H": "Hard", "G" : "Game"}
 	retval = input(in_string)
 	if retval in stuffdict:
